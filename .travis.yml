@@ -12,14 +12,15 @@ before_install:
   # Pull the docker image, not cached, caching is slower
   - docker pull yuhanuncitgez/sero_core_opengl:latest
 
-# Notifications, no email, post to slack channel
+# Notifications, no email
 notifications:
-  email: true
+  email: false
 
 script:
   # pass variables TRAVIS_BRANCH and repo to entry-point
   - docker run -v ~/.ccache:/opt/.ccache yuhanuncitgez/sero_core_opengl:latest
 
+# Cache the ccache directory
 cache:
   directories:
     - ~/.ccache

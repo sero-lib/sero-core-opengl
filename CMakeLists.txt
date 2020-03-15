@@ -25,3 +25,11 @@ target_link_libraries(sero_core_opengl_tests
         PRIVATE sero_core_opengl
         PRIVATE gtest
         )
+
+add_executable(temp
+        temp.cpp
+        )
+
+target_link_libraries(temp
+        PRIVATE sero_core_opengl
+        )

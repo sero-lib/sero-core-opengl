@@ -35,6 +35,7 @@
 # User-specific stuff:
 /.idea/
 /cmake-build-debug/
+/.vscode/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries

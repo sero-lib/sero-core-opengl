@@ -18,7 +18,7 @@ notifications:
 
 script:
   # pass variables TRAVIS_BRANCH and repo to entry-point
-  - docker run -v ~/.ccache:/opt/.ccache yuhanuncitgez/sero_core_opengl:latest
+  - docker run -v $TRAVIS_BUILD_DIR:/opt/repo -v ~/.ccache:/opt/.ccache yuhanuncitgez/sero_core_opengl:latest
 
 # Cache the ccache directory
 cache:

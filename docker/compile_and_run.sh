@@ -5,8 +5,6 @@ export CCACHE_DIR=/opt/.ccache
 
 
 cd /opt/repo || exit 1
-git pull
-git submodule foreach git pull
 
 mkdir build && cd build || exit 1
 cmake .. \

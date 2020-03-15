@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.15)
 project(sero_core_opengl)
 
 set(CMAKE_CXX_STANDARD 20)

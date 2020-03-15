@@ -1,22 +1,30 @@
-FROM alpine:3.9.5
+FROM ubuntu:latest
 
 LABEL Maintainer = "Yuhanun Citgez <y.citgez@student.utwente.nl>"
 
 # Update lists
-RUN apk update
+RUN apt-get update
 
 # Update packages
-RUN apk upgrade
+RUN apt-get -y dist-upgrade
 
 # Get dependencies
-RUN apk add --no-cache \
-        gtest \
+RUN apt-get install -y \
         ccache \
         make \
         g++ \
         clang \
         cmake \
         git
+
+# Setup gtest
+RUN git clone https://github.com/google/googletest.git /opt/googletest && \
+    cd /opt/googletest && \
+    mkdir install && \
+    cd install && \
+    cmake .. && \
+    make -j $(nproc) && \
+    make install
 
 # Clone repo
 RUN git clone https://github.com/Sero-Lib/sero-core-opengl /opt/repo && \

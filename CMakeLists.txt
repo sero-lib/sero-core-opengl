@@ -1,13 +1,17 @@
 cmake_minimum_required(VERSION 3.10)
-project(sero_core_opengl)
+project(sero_core)
 
 set(CMAKE_CXX_STANDARD 20)
+
+find_package(Threads)
 
 add_library(sero_core_opengl
         src/core-opengl.cpp
         )
 
-#target_link_libraries(sero_core_opengl)
+target_link_libraries(sero_core_opengl
+        PUBLIC ${CMAKE_THREAD_LIBS_INIT}
+        )
 
 target_include_directories(sero_core_opengl
         PUBLIC include

@@ -1,30 +1,28 @@
-FROM ubuntu:latest
+FROM archlinux:latest
 
 LABEL Maintainer = "Yuhanun Citgez <y.citgez@student.utwente.nl>"
 
-# Update lists
-RUN apt-get update
-
-# Update packages
-RUN apt-get -y dist-upgrade
+# Update lists && packages
+RUN pacman -Syu --noconfirm
 
 # Get dependencies
-RUN apt-get install -y \
+RUN pacman --noconfirm --needed -S \
         ccache \
         make \
-        g++ \
+        gcc \
         clang \
         cmake \
-        git
+        git \
+        gtest
 
 # Setup gtest
-RUN git clone https://github.com/google/googletest.git /opt/googletest && \
-    cd /opt/googletest && \
-    mkdir install && \
-    cd install && \
-    cmake .. && \
-    make -j $(nproc) && \
-    make install
+#RUN git clone https://github.com/google/googletest.git /opt/googletest && \
+#    cd /opt/googletest && \
+#    mkdir install && \
+#    cd install && \
+#    cmake .. && \
+#    make -j $(nproc) && \
+#    make install
 
 # Clone repo
 RUN git clone https://github.com/Sero-Lib/sero-core-opengl /opt/repo && \
@@ -35,4 +33,4 @@ RUN git clone https://github.com/Sero-Lib/sero-core-opengl /opt/repo && \
 COPY compile_and_run.sh /compile_and_run.sh
 
 # Run the stuff
-#CMD "/compile_and_run.sh"
+CMD "/compile_and_run.sh"

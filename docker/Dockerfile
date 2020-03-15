@@ -15,15 +15,6 @@ RUN pacman --noconfirm --needed -S \
         git \
         gtest
 
-# Setup gtest
-#RUN git clone https://github.com/google/googletest.git /opt/googletest && \
-#    cd /opt/googletest && \
-#    mkdir install && \
-#    cd install && \
-#    cmake .. && \
-#    make -j $(nproc) && \
-#    make install
-
 # Clone repo
 RUN git clone https://github.com/Sero-Lib/sero-core-opengl /opt/repo && \
         cd /opt/repo && \

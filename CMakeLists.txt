@@ -5,12 +5,15 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Threads)
 
+add_subdirectory(external/glfw)
+
 add_library(sero_core_opengl
         src/core-opengl.cpp
         )
 
 target_link_libraries(sero_core_opengl
         PUBLIC ${CMAKE_THREAD_LIBS_INIT}
+        PUBLIC glfw
         )
 
 target_include_directories(sero_core_opengl

@@ -1,6 +1,8 @@
 #!/bin/sh
 
 pacman --noconfirm -Syu
+export CCACHE_DIR=/opt/.ccache
+
 
 cd /opt/repo || exit 1
 git pull

@@ -18,4 +18,8 @@ notifications:
 
 script:
   # pass variables TRAVIS_BRANCH and repo to entry-point
-  - docker run -v ~/.ccache:/opt/.ccache yuhanuncitgez/sero_core_opengl:latest "$TRAVIS_BRANCH" "$TRAVIS_REPO_SLUG"
+  - docker run -v ~/.ccache:/opt/.ccache yuhanuncitgez/sero_core_opengl:latest
+
+cache:
+  directories:
+    - ~/.ccache

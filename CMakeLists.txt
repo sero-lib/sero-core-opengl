@@ -9,6 +9,7 @@ add_subdirectory(external/glfw)
 
 add_library(sero_core_opengl
         src/core-opengl.cpp
+        external/glad/src/glad.c
         )
 
 target_link_libraries(sero_core_opengl
@@ -18,6 +19,7 @@ target_link_libraries(sero_core_opengl
 
 target_include_directories(sero_core_opengl
         PUBLIC include
+        PUBLIC external/glad/include
         )
 
 add_executable(sero_core_opengl_tests

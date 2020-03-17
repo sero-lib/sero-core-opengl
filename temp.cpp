@@ -2,7 +2,7 @@
 // Created by john on 3/15/20.
 //
 
-#include <core-opengl.h>
+#include <core-opengl/core-opengl.h>
 #include <iostream>
 
 int main() {

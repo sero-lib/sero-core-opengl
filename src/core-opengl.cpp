@@ -1,5 +1,5 @@
 #include <functional>
-#include "core-opengl.h"
+#include "core-opengl/core-opengl.h"
 
 namespace sero::core::opengl {
     void Renderer::size_callback(GLFWwindow* window, int width, int height)
@@ -44,6 +44,7 @@ namespace sero::core::opengl {
     void Renderer::tick() noexcept {
         swap_buffers();
         poll_events();
+        process_events();
     }
 
     void Renderer::poll_events() const noexcept {
@@ -59,8 +60,6 @@ namespace sero::core::opengl {
     }
 
     void Renderer::process_events() noexcept {
-        static keys = {
 
-        };
     }
 } // namespace sero

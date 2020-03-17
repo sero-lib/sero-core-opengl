@@ -38,3 +38,5 @@ add_executable(temp
 target_link_libraries(temp
         PRIVATE sero_core_opengl
         )
+
+add_library(sero::core_opengl ALIAS sero_core_opengl)

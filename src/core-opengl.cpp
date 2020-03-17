@@ -2,12 +2,13 @@
 #include "core-opengl.h"
 
 namespace sero::core::opengl {
-    void size_callback(GLFWwindow* window, int width, int height)
+    void Renderer::size_callback(GLFWwindow* window, int width, int height)
     {
-        Renderer::instance()->framebuffer_size_callback(window, width, height);
-        // make sure the viewport matches the new window dimensions; note that width and
-        // height will be significantly larger than specified on retina displays.
-        glViewport(0, 0, width, height);
+        if (!Renderer::instance()->resize_callback) {
+            Renderer::instance()->set_viewport(0, 0, width, height);
+            return;
+        }
+        Renderer::instance()->resize_callback.value()(window, width, height);
     }
 
     std::optional<GLFWwindow *> Renderer::create_window() noexcept {
@@ -31,11 +32,35 @@ namespace sero::core::opengl {
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         window = glfwCreateWindow(width, height, _name.begin(), nullptr, nullptr);
         glfwMakeContextCurrent(window);
+        gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+        set_viewport(0, 0, width, height);
         glfwSetFramebufferSizeCallback(window, size_callback);
     }
 
-    void Renderer::framebuffer_size_callback(GLFWwindow *, int _width, int _height) noexcept {
-        width = _width;
-        height = _height;
+    bool Renderer::window_should_close() const noexcept {
+        return glfwWindowShouldClose(window);
+    }
+
+    void Renderer::tick() noexcept {
+        swap_buffers();
+        poll_events();
+    }
+
+    void Renderer::poll_events() const noexcept {
+        glfwPollEvents();
+    }
+
+    void Renderer::swap_buffers() noexcept {
+        glfwSwapBuffers(window);
+    }
+
+    void Renderer::set_viewport(int x, int y, int _width, int _height) noexcept {
+        glViewport(x, y, width, height);
+    }
+
+    void Renderer::process_events() noexcept {
+        static keys = {
+
+        };
     }
 } // namespace sero

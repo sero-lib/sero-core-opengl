@@ -6,17 +6,16 @@
 #include <iostream>
 
 int main() {
-    sero::core::opengl::Renderer renderer{};
-    renderer.initialize(800, 600, "Renderer");
-    auto window = renderer.create_window();
+    auto renderer = sero::core::opengl::Renderer::instance();
+    renderer->initialize(800, 600, "Renderer");
+    auto window = renderer->create_window();
 
     if (!window.has_value()) {
         std::cout << "Failed to create window" << std::endl;
         return -1;
     }
 
-    while (true) {
-        glfwSwapBuffers(window.value());
-        glfwPollEvents();
+    while (!renderer->window_should_close()) {
+        renderer->tick();
     }
 }

@@ -22,15 +22,6 @@ target_include_directories(sero_core_opengl
         PUBLIC external/glad/include
         )
 
-add_executable(sero_core_opengl_tests
-        tests/main.cpp
-        )
-
-target_link_libraries(sero_core_opengl_tests
-        PRIVATE sero_core_opengl
-        PRIVATE gtest
-        )
-
 add_executable(temp
         temp.cpp
         )
